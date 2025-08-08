@@ -2,7 +2,7 @@
 
 FastAPI backend to classify images using a neural network (Keras/TensorFlow). The service receives an image, processes it with a pre-trained model, and returns the identified category together with a related audio file, which is served as a static asset.
 
-![Neural Network](media/uploads/neuronal_network.png)
+![Neural Network](media/neuronal_network.png)
 
 ## Features
 - FastAPI: quick API with automatic docs at `/docs`.
