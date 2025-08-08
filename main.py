@@ -8,7 +8,7 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 
 from fastapi.staticfiles import StaticFiles
-from fastapi import FastAPI, UploadFile
+from fastapi import FastAPI, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 
 from dotenv import load_dotenv
@@ -18,7 +18,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[os.getenv("LOCAL_ORIGIN_FRONTEND"),os.getenv("LOCAL_HOST_ORIGIN_FRONTEND")], 
+    allow_origins=[os.getenv("ORIGIN_FRONTEND"),os.getenv("HOST_ORIGIN_FRONTEND")], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -138,5 +138,9 @@ def read_root():
 
 @app.post("/uploadfile")
 async def create_upload_file(file: UploadFile):
-    response = predict_image(file)
-    return response
+    try:
+        response = predict_image(file)
+        return response
+    except Exception as e:
+        print(f"Error in /uploadfile endpoint: {str(e)}")
+        raise HTTPException(status_code=500, detail="Error interno en el servidor.")
