@@ -101,4 +101,6 @@ Place your model and weights at `modelo/modelo.h5` and `modelo/pesos.h5`. The ba
 - Adjust CORS origins in `.env` to allow requests from your frontend.
 
 ## License
-Adapt and reuse this project as needed. Add your license terms here if applicable.
+MIT License
+
+Copyright (c) 2025 Jeremy Alexander Ramírez Galeotti
